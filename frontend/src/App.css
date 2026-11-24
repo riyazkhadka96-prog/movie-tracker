@@ -1,0 +1,932 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: "Manrope", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #282722;
+  background: #fff;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --paper: #fff;
+  --paper-warm: #f5f8fd;
+  --paper-deep: #edf3fb;
+  --ink: #282722;
+  --muted: #77756e;
+  --quiet: #a19e96;
+  --line: #e8e6e0;
+  --accent: #326be1;
+  --accent-dark: #2456bd;
+  --gold: #a77629;
+  --danger: #b84d43;
+  --good: #477a60;
+  --font-display: "Lora", Georgia, "Times New Roman", serif;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--ink);
+  background-color: #f5f8fd;
+  background-image:
+    radial-gradient(ellipse at 14% 12%, rgba(73, 125, 219, 0.1), transparent 30rem),
+    radial-gradient(ellipse at 87% 82%, rgba(89, 143, 226, 0.08), transparent 32rem);
+  background-attachment: fixed;
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #6f98ed;
+  outline-offset: 2px;
+}
+
+.App {
+  min-height: 100vh;
+  padding: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Eyebrow {
+  margin-bottom: 7px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* Sign-in and registration */
+.AuthShell {
+  display: grid;
+  grid-template-columns: 1fr 0.92fr;
+  width: min(100%, 930px);
+  min-height: 560px;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  box-shadow: 0 18px 55px rgba(39, 68, 113, 0.08);
+}
+
+.AuthBrand {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 560px;
+  padding: 38px 44px;
+  border-right: 1px solid var(--line);
+  background: var(--paper-warm);
+}
+
+.BrandMark,
+.HeaderLogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border: 1px solid #d5e1f4;
+  border-radius: 50%;
+  background: #eaf1fd;
+  color: var(--accent-dark);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.AuthBrand > div {
+  max-width: 380px;
+}
+
+.AuthBrand h1 {
+  max-width: 370px;
+  margin: 10px 0 15px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.AuthBrand p:last-child {
+  max-width: 340px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.AuthCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 52px clamp(32px, 5vw, 62px);
+  background: var(--paper);
+}
+
+.AuthHeading {
+  margin-bottom: 27px;
+}
+
+.AuthHeading h2 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.AuthCard form,
+.MovieForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.AuthCard label,
+.MovieForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #55534d;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.AuthCard input,
+.MovieForm input,
+.MovieForm textarea,
+.ToolbarControls input,
+.ToolbarControls select {
+  width: 100%;
+  border: 1px solid #dedcd5;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.AuthCard input,
+.MovieForm input {
+  height: 43px;
+  padding: 0 12px;
+}
+
+.MovieForm textarea {
+  min-height: 78px;
+  padding: 10px 12px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.AuthCard input::placeholder,
+.MovieForm input::placeholder,
+.MovieForm textarea::placeholder,
+.ToolbarControls input::placeholder {
+  color: #a6a39b;
+}
+
+.AuthCard input:focus,
+.MovieForm input:focus,
+.MovieForm textarea:focus,
+.ToolbarControls input:focus,
+.ToolbarControls select:focus {
+  border-color: #6f98ed;
+  box-shadow: 0 0 0 3px rgba(50, 107, 225, 0.1);
+}
+
+.PrimaryAuthButton,
+.SecondaryAuthButton,
+.SaveButton,
+.CancelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 650;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.PrimaryAuthButton,
+.SaveButton {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.PrimaryAuthButton:hover,
+.SaveButton:hover {
+  border-color: var(--accent-dark);
+  background: var(--accent-dark);
+}
+
+.SecondaryAuthButton,
+.CancelButton {
+  border: 1px solid #dcd9d1;
+  background: #fff;
+  color: #4c4a44;
+}
+
+.SecondaryAuthButton:hover,
+.CancelButton:hover {
+  background: var(--paper-warm);
+}
+
+.AuthDivider {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 -1px;
+  color: var(--quiet);
+  font-size: 11px;
+}
+
+.AuthDivider::before,
+.AuthDivider::after {
+  height: 1px;
+  flex: 1;
+  background: var(--line);
+  content: "";
+}
+
+/* Collection dashboard */
+.MoviePage {
+  width: min(1320px, 100%);
+  min-height: calc(100vh - 68px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  box-shadow: 0 16px 48px rgba(39, 68, 113, 0.07);
+  text-align: left;
+}
+
+.MoviePage header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 66px;
+  padding: 0 34px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.HeaderBrand,
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.HeaderLogo {
+  width: 32px;
+  height: 32px;
+  font-size: 15px;
+}
+
+.MoviePage header h2 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.UserWelcome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #55534d;
+  font-size: 12px;
+  font-weight: 550;
+}
+
+.UserWelcome > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  border: 1px solid #d5e1f4;
+  border-radius: 50%;
+  background: #eaf1fd;
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.logout-button {
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid #dedcd5;
+  border-radius: 8px;
+  background: #fff;
+  color: #625f58;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  background: var(--paper-warm);
+}
+
+.Dashboard {
+  padding: 30px 34px 38px;
+}
+
+.DashboardIntro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+  padding: 21px 23px;
+  border: 1px solid #e5ecf8;
+  border-radius: 12px;
+  background: #f6f9ff;
+}
+
+.DashboardIntro h1 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.StatsGrid {
+  display: flex;
+  gap: 8px;
+}
+
+.StatCard {
+  display: flex;
+  min-width: 96px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 13px;
+  border: 1px solid #e5e9f1;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.StatCard strong {
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1;
+}
+
+.StatCard:last-child strong {
+  color: var(--accent-dark);
+}
+
+.StatCard span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.DashboardGrid {
+  display: grid;
+  grid-template-columns: minmax(245px, 0.76fr) minmax(0, 1.8fr);
+  align-items: start;
+  gap: 17px;
+}
+
+.MovieForm,
+.MovieList {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.MovieForm {
+  position: sticky;
+  top: 83px;
+  padding: 19px;
+}
+
+.SectionHeading {
+  margin-bottom: 17px;
+}
+
+.SectionHeading h3,
+.ListToolbar h3 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.FormRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px;
+  gap: 9px;
+}
+
+.Alert {
+  margin-bottom: 13px;
+  padding: 10px 12px;
+  border: 1px solid #d5e5d9;
+  border-radius: 8px;
+  background: #f4f8f3;
+  color: var(--good);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.AlertError {
+  border-color: #ecd5d1;
+  background: #fbf5f3;
+  color: var(--danger);
+}
+
+.SaveButton,
+.CancelButton {
+  min-height: 40px;
+}
+
+.MovieList {
+  min-height: 480px;
+  padding: 19px;
+  background: #fbfcff;
+}
+
+.ListToolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 13px;
+  margin-bottom: 16px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e8edf5;
+}
+
+.ListToolbar .Eyebrow {
+  margin-bottom: 5px;
+}
+
+.ListToolbar h3 {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.ToolbarControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+.ToolbarControls input {
+  width: 180px;
+  height: 38px;
+  padding: 0 11px 0 34px;
+  border-radius: 8px;
+  background: #fff url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2377756e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3ecircle cx='11' cy='11' r='7'%2f%3e%3cpath d='m20 20-4-4'%3e%3c/path%3e%3c/svg%3e") no-repeat 11px center;
+  background-size: 15px;
+  font-size: 12px;
+}
+
+.ToolbarControls select {
+  height: 38px;
+  padding: 0 28px 0 11px;
+  border-radius: 8px;
+  appearance: none;
+  background: #fff url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2377756e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 9px center;
+  background-size: 12px;
+  font-size: 12px;
+}
+
+.MovieGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  gap: 12px;
+}
+
+.MovieCard {
+  display: grid;
+  grid-template-columns: 94px minmax(0, 1fr);
+  min-height: 158px;
+  overflow: hidden;
+  border: 1px solid #e6eaf1;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(31, 57, 97, 0.025);
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.MovieCard:hover {
+  transform: translateY(-2px);
+  border-color: #c8d7f0;
+  box-shadow: 0 7px 18px rgba(39, 68, 113, 0.08);
+}
+
+.MoviePoster {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 158px;
+  overflow: hidden;
+  border-right: 1px solid var(--line);
+  background: #e7eefb;
+}
+
+.MoviePoster::before {
+  position: absolute;
+  inset: 12px 10px;
+  border: 1px solid rgba(43, 82, 147, 0.2);
+  content: "";
+}
+
+.MoviePoster span {
+  position: relative;
+  color: #3864aa;
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+
+.MovieCard:nth-child(4n + 2) .MoviePoster {
+  background: #e4eff4;
+}
+
+.MovieCard:nth-child(4n + 2) .MoviePoster span {
+  color: #477488;
+}
+
+.MovieCard:nth-child(4n + 3) .MoviePoster {
+  background: #e9e8f5;
+}
+
+.MovieCard:nth-child(4n + 3) .MoviePoster span {
+  color: #66639b;
+}
+
+.MovieCard:nth-child(4n + 4) .MoviePoster {
+  background: #e8eee8;
+}
+
+.MovieCard:nth-child(4n + 4) .MoviePoster span {
+  color: #55725c;
+}
+
+.MovieCardBody {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 11px 11px 9px;
+}
+
+.MovieCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 7px;
+}
+
+.MovieGenre {
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+  padding: 3px 6px;
+  border: 1px solid #dfe8f7;
+  border-radius: 5px;
+  background: #f4f7fc;
+  color: #526582;
+  font-size: 9px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.MovieRating {
+  color: #966a1f;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.MovieRating::before {
+  margin-right: 3px;
+  content: "★";
+}
+
+.MovieCard h4 {
+  margin: 0 0 4px;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.MovieCardBody > p {
+  display: -webkit-box;
+  margin: 0 0 8px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.MovieCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  padding-top: 7px;
+  border-top: 1px solid #edf0f5;
+}
+
+.MovieCardFooter > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.MovieCardFooter > div {
+  display: flex;
+  gap: 5px;
+}
+
+.EditButton,
+.DeleteButton {
+  min-height: 25px;
+  padding: 0 7px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.EditButton {
+  border: 1px solid #dedcd5;
+  background: #fff;
+  color: #59574f;
+}
+
+.EditButton:hover {
+  background: var(--paper-warm);
+}
+
+.DeleteButton {
+  border: 1px solid #ead8d4;
+  background: #fff;
+  color: var(--danger);
+}
+
+.DeleteButton:hover {
+  background: #fbf5f3;
+}
+
+.EmptyState {
+  display: flex;
+  min-height: 350px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border: 1px dashed #dedcd5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.EmptyState > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  border: 1px solid #d5e1f4;
+  border-radius: 50%;
+  background: #f1f5fc;
+  color: var(--accent-dark);
+  font-family: var(--font-display);
+  font-size: 21px;
+}
+
+.EmptyState h3 {
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.EmptyState p {
+  max-width: 280px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+  .DashboardGrid {
+    grid-template-columns: minmax(230px, 0.75fr) minmax(0, 1.25fr);
+  }
+
+  .Dashboard,
+  .MoviePage header {
+    padding-right: 23px;
+    padding-left: 23px;
+  }
+
+  .ListToolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 760px) {
+  .App {
+    padding: 18px;
+  }
+
+  .AuthShell {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    min-height: 0;
+  }
+
+  .AuthBrand {
+    min-height: 270px;
+    padding: 25px 29px;
+  }
+
+  .AuthBrand > div {
+    margin-top: 42px;
+  }
+
+  .AuthBrand h1 {
+    max-width: 350px;
+    font-size: 35px;
+  }
+
+  .AuthCard {
+    padding: 33px 29px;
+  }
+
+  .MoviePage {
+    min-height: calc(100vh - 36px);
+  }
+
+  .DashboardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .MovieForm {
+    position: static;
+  }
+
+  .DashboardIntro {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 540px) {
+  .App {
+    padding: 9px;
+  }
+
+  .AuthBrand {
+    min-height: 250px;
+    padding: 21px;
+  }
+
+  .AuthBrand h1 {
+    font-size: 31px;
+  }
+
+  .AuthCard {
+    padding: 27px 21px;
+  }
+
+  .AuthHeading h2 {
+    font-size: 25px;
+  }
+
+  .MoviePage {
+    border-radius: 12px;
+  }
+
+  .MoviePage header {
+    height: 58px;
+    padding: 0 13px;
+  }
+
+  .MoviePage header h2 {
+    font-size: 16px;
+  }
+
+  .header-actions {
+    gap: 7px;
+  }
+
+  .UserWelcome small {
+    display: none;
+  }
+
+  .logout-button {
+    padding: 0 9px;
+  }
+
+  .Dashboard {
+    padding: 16px 13px;
+  }
+
+  .DashboardIntro {
+    padding: 17px;
+  }
+
+  .StatsGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .StatCard {
+    min-width: 0;
+    align-items: center;
+    padding: 9px 5px;
+    text-align: center;
+  }
+
+  .StatCard strong {
+    font-size: 18px;
+  }
+
+  .MovieForm,
+  .MovieList {
+    padding: 13px;
+  }
+
+  .ToolbarControls {
+    width: 100%;
+  }
+
+  .ToolbarControls input,
+  .ToolbarControls select {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .MovieGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

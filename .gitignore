@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Generated files and local data
+/frontend/build/
+/backend/db_data/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

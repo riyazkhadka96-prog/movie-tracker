@@ -1,0 +1,60 @@
+Movie Tracker MERN Project - React Page Components Structure
+
+FRONTEND STRUCTURE:
+C:\Users\PREDATOR\OneDrive\Documents\Default Project\movie-tracker\frontend\src\
+
+MAIN COMPONENTS:
+├── App.js              # Page router & auth state manager
+│   - Manages: isLoggedIn, currentUser, page state
+│   - Routes: LoginPage ↔ RegisterPage ↔ MovieListPage
+│   - Passes callbacks between pages
+│
+├── index.js            # React DOM createRoot render
+│
+├── App.css             # Global styling for all pages
+│
+└── pages/              # Individual page components
+    ├── LoginPage.js    # Authentication login page
+    │   - Email/password form
+    │   - Login button + Register link
+    │   - State: form (email, password)
+    │
+    ├── RegisterPage.js # Authentication register page
+    │   - Name/email/password form
+    │   - Register button + Login link
+    │   - State: form (name, email, password)
+    │
+    └── MovieListPage.js # Movie CRUD display page
+        │   - Movie form: title, description, genre, rating, releasedYear
+        │   - Movie list: display all movies with delete
+        │   - Logout button
+        │   - State: movies (array), form, alert
+        │   - useEffect: fetch movies on mount
+        │   - handleCreate: POST new movie
+        │   - handleDelete: DELETE movie after confirmation
+
+DEPENDENCIES (package.json):
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- react-scripts: 5.0.1
+
+REACT HOOKS USED:
+- useState: for form state, auth state, movies list
+- useEffect: for fetching movies on component mount
+
+JSX FEATURES:
+- Conditional rendering: {isLoggedIn ? <MovieListPage /> : <LoginPage />}
+- Event handlers: onSubmit, onChange, onClick
+- Lists with .map(): movies.map(movie => <li>...</li>)
+- Forms with controlled components
+- Nested JSX structure
+
+USAGE:
+1. Start: http://localhost:3000 shows LoginPage
+2. Register or Login → transitions to MovieListPage
+3. Add movies via form → appears in list
+4. Delete movies via delete button
+5. Logout → returns to LoginPage
+
+The project uses plain JavaScript/JSX (no TypeScript) as requested,
+with a proper but simple page-based React component structure.

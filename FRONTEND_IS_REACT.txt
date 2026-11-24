@@ -1,0 +1,37 @@
+Movie Tracker MERN Project - Frontend is React + JSX
+
+FRONTEND LOCATION:
+C:\Users\PREDATOR\OneDrive\Documents\Default Project\movie-tracker\frontend
+
+REACT CONFIRMATION:
+✅ frontend/package.json has react, react-dom, react-scripts dependencies
+✅ frontend/src/App.js - React functional component with JSX syntax
+✅ frontend/src/index.js - React DOM createRoot render
+✅ Using plain JavaScript (JSX), NOT TypeScript/TSX
+
+REACT FILES:
+- App.js (14KB) - Main component with auth state, movie form, movie list
+  - Uses useState hooks for: currentUser, isLoggedIn, movies, form, showForm, editingMovie, alert
+  - Uses useEffect hook for auth check on mount + fetchMovies
+  - JSX syntax: <div>, <header>, <form>, <input>, <button>, <ul>, <li>, etc.
+  - Conditional rendering: {isLoggedIn ? (...) : (...)}
+  - Event handlers: onSubmit, onChange, onClick, onChange
+  - localStorage for JWT token persistence
+  
+- index.js (258 bytes) - React DOM root render
+  - ReactDOM.createRoot(document.getElementById('root'))
+  - <React.StrictMode><App /></React.StrictMode>
+
+- App.css (1KB) - CSS styling for the React app
+
+DEPENDENCIES (from package.json):
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- react-scripts: 5.0.1
+
+USAGE:
+- Start frontend: cd movie-tracker/frontend && npm start
+- Opens at: http://localhost:3000
+- Features: Register form, Login form, Add movie form, Movie list with edit/delete
+
+The frontend is 100% React + JavaScript/JSX as specified in the project requirements.
